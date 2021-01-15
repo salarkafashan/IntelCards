@@ -20,6 +20,9 @@
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </jet-nav-link>
+                                <!-- <jet-nav-link :href="route('setting')" :active="route().current('setting')">
+                                    Setting
+                                </jet-nav-link> -->
                             </div>
                         </div>
 
@@ -84,12 +87,12 @@
                                 <jet-dropdown align="right" width="48">
                                     <template #trigger>
                                         <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                            <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
+                                            <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.first_name" />
                                         </button>
 
                                         <span v-else class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                                {{ $page.props.user.name }}
+                                                {{ $page.props.user.first_name}} {{$page.props.user.last_name}}
 
                                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -139,21 +142,26 @@
 
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
-                    <div class="pt-2 pb-3 space-y-1">
+                    <div class="pt-2 space-y-1">
                         <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </jet-responsive-nav-link>
                     </div>
+                    <!-- <div class="pt-1 pb-3 space-y-1">
+                        <jet-responsive-nav-link :href="route('setting')" :active="route().current('setting')">
+                            Setting
+                        </jet-responsive-nav-link>
+                    </div> -->
 
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-gray-200">
                         <div class="flex items-center px-4">
                             <div v-if="$page.props.jetstream.managesProfilePhotos" class="flex-shrink-0 mr-3" >
-                                <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
+                                <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.first_name" />
                             </div>
 
                             <div>
-                                <div class="font-medium text-base text-gray-800">{{ $page.props.user.name }}</div>
+                                <div class="font-medium text-base text-gray-800">{{ $page.props.user.first_name }}</div>
                                 <div class="font-medium text-sm text-gray-500">{{ $page.props.user.email }}</div>
                             </div>
                         </div>
