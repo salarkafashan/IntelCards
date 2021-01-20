@@ -142,9 +142,9 @@
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 space-y-1">
-                        <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                        <!-- <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
-                        </jet-responsive-nav-link>
+                        </jet-responsive-nav-link> -->
                     </div>
                     <!-- <div class="pt-1 pb-3 space-y-1">
                         <jet-responsive-nav-link :href="route('setting')" :active="route().current('setting')">
@@ -222,11 +222,11 @@
             </nav>
 
             <!-- Page Heading -->
-            <header class="bg-white shadow">
+            <!-- <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header"></slot>
                 </div>
-            </header>
+            </header> -->
 
             <!-- Page Content -->
             <main>
