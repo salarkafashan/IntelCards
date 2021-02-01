@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\BoxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,9 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+
+Route::get('/boxes', [BoxController::class, 'index'])->name('boxes');
+Route::post('/boxes', [BoxController::class, 'store'])->name('box-store');
+Route::get('/boxes/{box}-{slug}', [BoxController::class, 'show'])->name('box_details');
+Route::post('/boxes/{box}', [BoxController::class, 'destroy'])->name('box-destroy');

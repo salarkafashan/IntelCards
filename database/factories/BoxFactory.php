@@ -2,19 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
-use App\Models\Card;
 use App\Models\Box;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
-class CardFactory extends Factory
+class BoxFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Card::class;
+    protected $model = Box::class;
 
     /**
      * Define the model's default state.
@@ -24,11 +23,9 @@ class CardFactory extends Factory
     public function definition()
     {
         return [
-            'level' => $this->faker->numberBetween(1, 6),
-            'front' => $this->faker->word,
-            'back' =>  $this->faker->word,
+            'name' => $this->faker->randomElement(['English', 'French', 'Turkish', 'Germany']),
             'slug' => 'slug',
-            'box_id' => Box::all('id')->random(),
+            'user_id' => User::all('id')->random(),
         ];
     }
 }
