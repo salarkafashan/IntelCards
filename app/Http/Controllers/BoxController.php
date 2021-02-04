@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Box;
-use App\Models\User;
 use Inertia\Inertia;
+use App\Http\Traits\ResponseTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class BoxController extends Controller
 {
+    use ResponseTrait;
     /**
      * Display a listing of the resource.
      *
@@ -47,8 +48,9 @@ class BoxController extends Controller
         $data['user_id']= Auth::user()->id;
         $data['slug']= Str::slug($data['name']);
         Box::create($data);
-        return redirect('boxes')->with('status', 'Profile updated!');
-    }
+
+        return redirect('boxes')->with('message' , 'Box created');
+    } 
 
     /**
      * Display the specified resource.
@@ -63,26 +65,22 @@ class BoxController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Box $box)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'min:4'],
+        ]);
+        $data['user_id']= Auth::user()->id;
+        $data['slug']= Str::slug($data['name']);
+        $box->update($data);
+
+        return redirect('boxes/'.$box->id.'-'.$data['slug'])->with('message' , 'Box edited');
     }
 
     /**
@@ -93,6 +91,7 @@ class BoxController extends Controller
      */
     public function destroy(Box $box)
     {
-        return $box;
+        $box->delete();
+        return redirect('/boxes');
     }
 }

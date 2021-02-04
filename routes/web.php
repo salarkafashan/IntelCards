@@ -33,4 +33,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/boxes', [BoxController::class, 'index'])->name('boxes');
 Route::post('/boxes', [BoxController::class, 'store'])->name('box-store');
 Route::get('/boxes/{box}-{slug}', [BoxController::class, 'show'])->name('box_details');
-Route::post('/boxes/{box}', [BoxController::class, 'destroy'])->name('box-destroy');
+Route::put('boxes/{box}', [BoxController::class, 'update'])->name('box_update'); 
+Route::delete('/boxes/{box}', [BoxController::class, 'destroy'])->name('box-destroy');    
+   
+Route::get('/cards/{box}-{slug}', [CardController::class, 'show'])->name('card_details');
+
