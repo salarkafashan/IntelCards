@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BoxController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,5 +37,7 @@ Route::get('/boxes/{box}-{slug}', [BoxController::class, 'show'])->name('box_det
 Route::put('boxes/{box}', [BoxController::class, 'update'])->name('box_update'); 
 Route::delete('/boxes/{box}', [BoxController::class, 'destroy'])->name('box-destroy');    
    
-Route::get('/cards/{box}-{slug}', [CardController::class, 'show'])->name('card_details');
+Route::get('/cards/{card}-{slug}', [CardController::class, 'show'])->name('card_details');
+Route::put('cards/{card}', [CardController::class, 'update'])->name('card_update'); 
+Route::delete('/cards/{card}', [CardController::class, 'destroy'])->name('card-destroy');
 

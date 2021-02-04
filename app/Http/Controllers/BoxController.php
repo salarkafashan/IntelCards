@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Box;
 use Inertia\Inertia;
-use App\Http\Traits\ResponseTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class BoxController extends Controller
 {
-    use ResponseTrait;
     /**
      * Display a listing of the resource.
      *

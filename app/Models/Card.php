@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Card extends Model
 {
@@ -20,6 +21,10 @@ class Card extends Model
         'back',
         'slug',
     ];
+    public function path()
+    {
+        return url("Boxes/{$this->id}-" . Str::slug($this->name));
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }

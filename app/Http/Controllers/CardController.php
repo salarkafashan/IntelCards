@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Card;
+use Inertia\Inertia;
 
 class CardController extends Controller
 {
@@ -43,9 +47,10 @@ class CardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Card $card)
     {
-        //
+        $box = $card->box;
+        return Inertia::render('Cards/show', ['card' => $card,'box' =>$box]);
     }
 
     /**
@@ -66,9 +71,16 @@ class CardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Card $card)
     {
-        //
+        $data = $request->validate([
+            'front' => ['required', 'string'],
+            'back' => ['required', 'string'],
+        ]);
+        $data['slug']= Str::slug($data['front']);
+        $card->update($data);
+
+        return redirect('cards/'.$card->id.'-'.$data['slug'])->with('message' , 'card edited');
     }
 
     /**
@@ -77,8 +89,10 @@ class CardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Card $card)
     {
-        //
+        $box = $card->box;
+        $card->delete();
+        return redirect('boxes/'.$box->id.'-'.$box->slug);
     }
 }
