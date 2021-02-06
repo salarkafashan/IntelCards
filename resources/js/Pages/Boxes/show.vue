@@ -34,10 +34,7 @@
                                 </div> 
                                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                                     <!-- Toast Message -->
-                                    <div v-if="$page.props.flash.message">
-                                        <Toast :flash="$page.props.flash.message" />
-                                    </div>
-
+                                    <Toast />
                                     <button type="button" @click="isOpen = !isOpen" class="inline-flex items-center justify-center px-4 py-2 mr-6 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">
                                         Delete Box
                                     </button>
@@ -58,59 +55,61 @@
 
             </div>
         </div>
-      
+
+        <AddCard :errors="$page.props.errors" :box="box"/>
+
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-        <div>
-          <div class="md:grid md:grid-cols-3 md:gap-6">
-            <div class="md:col-span-1">
-              <div class="px-4 sm:px-0">
-                <h3 class="text-lg font-medium text-gray-900">
-                 {{box.name}} Box
-                </h3> 
-                <p class="mt-1 text-sm text-gray-600">
-                  You have <span class="font-semibold">{{cards.length}}</span> cards in this box, click on them to edit
-                </p>
-              </div>
-            </div> 
-            <div class="mt-5 md:mt-0 md:col-span-2">
-                <div class="shadow overflow-hidden sm:rounded-md">
-                  <div class="px-4 py-5 bg-white sm:p-">
-                    <div class="grid grid-cols-1"> 
-                      
-                      <!-- Box Name -->
-                      <div class="col-span- sm:col-span-4">
-                            <div v-if="cards.length === 0">
-                                <p class="text-lg font-medium text-gray-600">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mx-1 mb-1">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <line x1="12" y1="8" x2="12" y2="12"></line>
-                                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                                    </svg>
-                                    You don't have any cards in this box
-                                </p>
-                            </div>
-                            <p class="mt-2 mb-3 text-md text-gray-600">Level 1 : </p>
+            <div>
+                <div class="md:grid md:grid-cols-3 md:gap-6">
+                    <div class="md:col-span-1">
+                        <div class="px-4 sm:px-0">
+                            <h3 class="text-lg font-medium text-gray-900">
+                                {{box.name}} Box
+                            </h3> 
+                            <p class="mt-1 text-sm text-gray-600">
+                                You have <span class="font-semibold">{{cards.length}}</span> cards in this box, click on them to edit
+                            </p>
+                        </div>
+                    </div> 
+                    <div class="mt-5 md:mt-0 md:col-span-2">
+                        <div class="shadow overflow-hidden sm:rounded-md">
+                            <div class="px-4 py-5 bg-white sm:p-">
+                                <div class="grid grid-cols-1"> 
                             
-                            <div class="grid grid-cols-2 md:grid-cols-3">     
-                                <div v-for="card in cards" :key="card.id">
-                                    <inertia-link :href="'/cards/' + card.id +'-'+ card.slug">
-                                        <label class="cursor-pointer block font-light text-base text-blue-700 my-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle mx-1 inline mb-1">
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg>
-                                            {{card.front}}
-                                        </label> 
-                                    </inertia-link>
+                                <!-- Box Name -->
+                                    <div class="col-span- sm:col-span-4">
+                                        <div v-if="cards.length === 0">
+                                            <p class="text-lg font-medium text-gray-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mx-1 mb-1">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                                </svg>
+                                                You don't have any cards in this box
+                                            </p>
+                                        </div>
+                                        <!-- <p class="mt-2 mb-3 text-md text-gray-600">Level 1 : </p> -->
+                                        
+                                        <div class="grid grid-cols-2 md:grid-cols-3">     
+                                            <div v-for="card in cards" :key="card.id">
+                                                <inertia-link :href="'/cards/' + card.id +'-'+ card.slug">
+                                                    <label class="cursor-pointer block font-light text-base text-blue-700 my-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle mx-1 inline mb-1">
+                                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                        </svg>
+                                                        {{card.front}}
+                                                    </label> 
+                                                </inertia-link>
+                                            </div>
+                                        </div> 
+                                    </div>
                                 </div>
                             </div> 
                         </div>
                     </div>
-                  </div> 
-                </div>
+                </div> 
             </div>
-          </div> 
         </div>
-      </div>
 
         <!-- Modal View -->
         <div v-show="isOpen">
@@ -163,19 +162,22 @@
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
+import AddCard from '../Cards/add'
 import Toast from '../Components/Toast'
+
 
 
 export default {
     components: { 
         AppLayout,
+        AddCard,
         Toast,
     },
 
     props:{
         box: Object,
-        cards: Object,
         errors: Object,
+        cards: Array,
     },
     data() {
         return { 

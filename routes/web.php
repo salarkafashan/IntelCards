@@ -37,6 +37,7 @@ Route::get('/boxes/{box}-{slug}', [BoxController::class, 'show'])->name('box_det
 Route::put('boxes/{box}', [BoxController::class, 'update'])->name('box_update'); 
 Route::delete('/boxes/{box}', [BoxController::class, 'destroy'])->name('box-destroy');    
    
+Route::post('/cards', [CardController::class, 'store'])->name('card-store');
 Route::get('/cards/{card}-{slug}', [CardController::class, 'show'])->name('card_details');
 Route::put('cards/{card}', [CardController::class, 'update'])->name('card_update'); 
 Route::delete('/cards/{card}', [CardController::class, 'destroy'])->name('card-destroy');

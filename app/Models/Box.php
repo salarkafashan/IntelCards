@@ -15,6 +15,6 @@ class Box extends Model
         return $this->belongsTo(User::class);
     }
     public function Cards(){
-        return $this->hasMany(Card::class);
+        return $this->hasMany(Card::class)->orderBy('id','DESC');
     }
 }

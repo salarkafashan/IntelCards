@@ -47,7 +47,7 @@ class BoxController extends Controller
         $data['slug']= Str::slug($data['name']);
         Box::create($data);
 
-        return redirect('boxes')->with('message' , 'Box created');
+        return redirect('boxes')->with('message' ,'Box created');
     } 
 
     /**
@@ -78,7 +78,7 @@ class BoxController extends Controller
         $data['slug']= Str::slug($data['name']);
         $box->update($data);
 
-        return redirect('boxes/'.$box->id.'-'.$data['slug'])->with('message' , 'Box edited');
+        return redirect('boxes/'.$box->id.'-'.$data['slug'])->with('message' , 'Box updated');
     }
 
     /**

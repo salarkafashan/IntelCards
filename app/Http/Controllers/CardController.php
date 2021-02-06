@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Card;
+use App\Models\Box;
 use Inertia\Inertia;
 
 class CardController extends Controller
@@ -37,8 +38,19 @@ class CardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    
     {
-        //
+        $data = $request->validate([
+            'front' => ['required', 'string'],
+            'back' => ['required', 'string'],
+            'box_id' => ['required', 'integer'],  
+        ]);
+        $data['slug']= Str::slug($data['front']);
+        $data['level']= 1;
+        Card::create($data);
+        
+        $box = Box::find($data['box_id'])->first();
+        return redirect('boxes/'.$data['box_id'].'-'.$box->slug)->with('message' ,'Card added');
     }
 
     /**

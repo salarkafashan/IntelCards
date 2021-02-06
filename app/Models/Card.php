@@ -20,6 +20,7 @@ class Card extends Model
         'front',
         'back',
         'slug',
+        'box_id'
     ];
     public function path()
     {

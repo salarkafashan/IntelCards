@@ -26,23 +26,24 @@
                                             <label class="block font-medium text-sm text-gray-700" for="box_name">
                                                 <span>Front </span>
                                             </label> 
-                                            <input id="name" v-model="form.front" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" type="text" autocomplete="name"/>
+                                            <input id="front" v-model="form.front" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" type="text" autocomplete="front"/>
                                             <div class="text-sm text-red-600" v-if="errors.front">{{ errors.front }}</div>
                                         </div> 
                                         <div class="col-span-6 sm:col-span-4">
                                             <label class="block font-medium text-sm text-gray-700" for="box_name">
                                                 <span>Back </span>
                                             </label> 
-                                            <input id="name" v-model="form.back" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" type="text" autocomplete="name"/>
+                                            <input id="back" v-model="form.back" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" type="text" autocomplete="back"/>
                                             <div class="text-sm text-red-600" v-if="errors.back">{{ errors.back }}</div>
                                         </div> 
                                     </div>
                                 </div> 
                                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                                     <!-- Toast Message -->
-                                    <div v-if="$page.props.flash.message">
-                                        <Toast :flash="$page.props.flash.message" />
-                                    </div>
+                                    <!-- <div v-if="$page.props.flash">
+                                        <Toast :flash="$page.props.flash" />
+                                    </div> -->
+                                    <Toast />
 
                                     <button type="button" @click="isOpen = !isOpen" class="inline-flex items-center justify-center px-4 py-2 mr-6 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">
                                         Delete Box
@@ -176,10 +177,10 @@ export default {
         }
     },
     methods: {
-      submit() {
-        this.$inertia.put('/cards/'+this.card.id, this.form)
-      },
-  },   
+        submit() {
+            this.$inertia.put('/cards/'+this.card.id, this.form)
+        },
+    },   
 }
 </script>
 
