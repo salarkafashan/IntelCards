@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BoxController;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\ExamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,7 @@ Route::get('/cards/{card}-{slug}', [CardController::class, 'show'])->name('card_
 Route::put('cards/{card}', [CardController::class, 'update'])->name('card_update'); 
 Route::delete('/cards/{card}', [CardController::class, 'destroy'])->name('card-destroy');
 
+Route::get('exams', [ExamController::class, 'index'])->name('exams');
+Route::get('/exams/{box}-{slug}', [ExamController::class, 'show_options'])->name('choose_box');
+Route::get('/exams/test/{box}-{slug}', [ExamController::class, 'test'])->name('test');
+Route::get('/exams/practice/{box}-{slug}', [ExamController::class, 'practice'])->name('practice');

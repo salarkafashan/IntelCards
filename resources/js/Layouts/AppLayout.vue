@@ -230,6 +230,9 @@
 
             <!-- Page Content -->
             <main>
+                <!-- Toast Message -->
+                <Toast />
+                                
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -253,6 +256,7 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import Toast from '../Pages/Components/Toast'
 
     export default {
         components: {
@@ -262,6 +266,7 @@
             JetDropdownLink,
             JetNavLink,
             JetResponsiveNavLink,
+            Toast,
         },
 
         data() {
