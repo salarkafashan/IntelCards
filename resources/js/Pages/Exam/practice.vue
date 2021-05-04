@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-      <div class="max-w-7xl mx-auto pt-10 pb-1 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto pt-10 pb-1 sm:px-6 lg:px-8">
         <div>
           <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
@@ -13,15 +13,11 @@
                 </h3> 
                 <p class="ml-2 text-sm text-gray-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle mx-1 inline mb-1"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    No time limit 
+                    click on the card and see the answer 
                 </p>
                 <p class="ml-2 text-sm text-gray-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle mx-1 inline mb-1"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    Each card is displayed once
-                </p>
-                <p class="ml-2 text-sm text-gray-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle mx-1 inline mb-1"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    No effect on the cards level
+                    X button means is card goes to level 1
                 </p>
                 <p class="ml-2 text-sm text-gray-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle mx-1 inline mb-1"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -39,13 +35,12 @@
 
         </div>
       </div>
-
       <div class="max-w-7xl mx-auto pt-1 pb-1 sm:px-6 lg:px-8">
         <div>
           <div class="md:grid md:grid-cols-2 md:gap-6 px-4">
-            <div class="sm:col-span-1">
-              <div class="flex flex-wrap sm:px-0 ">
-                <span class="ml-2 text-sm text-gray-600">Remaining questions: {{remaining}}</span>
+            <div class="md:col-span-1">
+              <div class="sm:px-0">
+                <span class="ml-2 text-sm text-gray-600">Remaining Cards: {{remaining}}</span>
                 <span class="ml-2 text-sm text-green-600">Correct: {{ trueAnswer }}</span>
                 <span class="ml-2 text-sm text-red-600">Wrong: {{wrongAnswer}}</span>
               </div>
@@ -64,16 +59,20 @@
       <div class="max-w-7xl mx-auto pt-8 pb-10 sm:px-6 lg:px-8">
         <div>
             <div class="space-x-4 px-4 grid justify-items-center">                
-              <div class="bg-gray-100 rounded-md shadow-md text-2xl w-72 h-40 font-semibold text-gray-600 m-auto text-center flex inline-block">
-                <span class="m-auto">{{card_text}}</span>
-              </div>
-              <div class="flex">
-                <button v-on:click="add()" class="m-5 bg-gray-800 hover:bg-gray-700 text-white font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width=20 height=20 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg>
-                </button> 
-                <button v-on:click="subtract()" class="m-5 bg-gray-800  hover:bg-gray-700 text-white font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width=20 height=20  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                </button>
+                <div v-on:click="toggleCard(flipped)" class="items-center">
+                    <transition name="flip">
+                      <div v-bind:key="flipped" class="bg-gray-100 rounded-md shadow-md text-2xl w-72 h-40 font-semibold text-gray-600 m-auto text-center flex inline-block">
+                        <span class="m-auto">{{card_text}}</span>
+                      </div>
+                    </transition>
+                </div>
+                <div class="flex">
+                    <button v-on:click="add()" class="m-5 bg-gray-800 hover:bg-gray-700 text-white font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width=20 height=20 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button> 
+                    <button v-on:click="subtract()" class="m-5 bg-gray-800  hover:bg-gray-700 text-white font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width=20 height=20  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
               </div>
             </div>
         </div>
@@ -101,6 +100,7 @@
           wrongAnswer:0,
           card_text:'',
           i:0,
+          flipped:true,
         } 
     },
     mounted: function() 
@@ -141,6 +141,34 @@
               this.toggle = !this.toggle;
             }
         },
+        toggleCard: function(flipped) 
+        {
+          if(this.flipped)
+            this.card_text = this.cards[this.i].back
+          else
+            this.card_text = this.cards[this.i].front
+          this.flipped = !flipped;
+          
+        }
     }
   }
 </script>
+
+
+
+
+<style>
+  .flip-enter-active {
+    transition: all 0.7s ease;
+  }
+  
+  .flip-leave-active {
+    display: none;
+  }
+  
+  .flip-enter, .flip-leave {
+    transform: rotateY(180deg);
+    opacity: 0;
+  
+  }
+</style>

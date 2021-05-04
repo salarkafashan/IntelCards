@@ -58,7 +58,7 @@
 
                 <div class="ml-12">
                     <div class="mt-2 text-sm text-gray-500">
-                        Test your memory here, by answer to your own cards
+                        Test your brain here, by answer to your cards
                     </div>
                 </div>
             </div>

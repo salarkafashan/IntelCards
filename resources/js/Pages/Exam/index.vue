@@ -1,37 +1,5 @@
 <template>
     <app-layout>
-      <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-        <div>
-          <div class="md:grid md:grid-cols-3 md:gap-6">
-            <div class="md:col-span-1">
-              <div class="px-4 sm:px-0">
-                <h3 class="text-lg font-medium text-gray-900">
-                  Test
-                </h3> 
-                <p class="mt-1 text-sm text-gray-600">
-                  Test your self with random cards!! 
-                </p>
-              </div>
-            </div> 
-
-            <div class="mt-8 md:mt-0 md:col-span-2">
-                <button class="inline-flex items-center px-4 py-2 mt-2 bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
-                    <inertia-link :href="route('boxes')">
-                        Lets start
-                    </inertia-link>
-                </button>
-            </div>
-          </div> 
-
-          <div class="hidden sm:block">
-            <div class="py-8">
-              <div class="border-t border-gray-200"></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
       <!-- Show User's boxes -->
       <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         <div>
@@ -42,7 +10,7 @@
                   Your Boxes
                 </h3> 
                 <p class="mt-1 text-sm text-gray-600">
-                  Choose one of your boxes
+                  Please choose one of your boxes
                 </p>
               </div>
             </div> 

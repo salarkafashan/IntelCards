@@ -22,6 +22,13 @@ class ExamController extends Controller
     public function test(Box $box)
     {
         $cards = $box->cards;
+        $cards = $cards->random(count($cards)-1);
         return Inertia::render('Exam/test', ['cards' => $cards]);
+    }
+    public function practice(Box $box)
+    {
+        $cards = $box->cards;
+        $cards = $cards->random(count($cards)-1);
+        return Inertia::render('Exam/practice', ['cards' => $cards]);
     }
 }

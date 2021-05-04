@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-      <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto pt-5 sm:px-6 lg:px-8">
         <div>
           <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
@@ -14,8 +14,8 @@
               </div>
             </div> 
 
-            <div class="mt-8 md:mt-0 md:col-span-2">
-                <button class="inline-flex items-center px-4 py-2 mt-5 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
+            <div class="mb-8 md:col-span-2">
+                <button class="inline-flex items-center px-4 py-2 m-4 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
                     <inertia-link :href="'/exams/test/' + box.id +'-'+box.slug">
                         Test yourself
                     </inertia-link>
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-    <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto pb-5 sm:px-6 lg:px-8">
         <div>
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="md:col-span-1">
@@ -46,8 +46,8 @@
                 </div>
             </div> 
 
-            <div class="mt-8 md:mt-0 md:col-span-2">
-                <button class="inline-flex items-center px-4 py-2 mt-5 bg-indigo-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-800 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
+            <div class="mb-8 md:col-span-2">
+                <button class="inline-flex items-center px-4 py-2 m-4 bg-indigo-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-800 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
                     <inertia-link :href="'/exams/practice/' + box.id +'-'+box.slug">
                         More Practice
                     </inertia-link>
